@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="UTF-8">
+  <title>Comunidade Católica Yeshuá</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- SDKs -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+    /* Suave rolagem para âncoras */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Sombra de foco acessível */
+    .focus-ring:focus-visible {
+      outline: 3px solid #4ea5d9;
+      outline-offset: 2px;
+    }
+    .app-wrapper {
+      width: 100%;
+      min-height: 100%;
+    }
+    /* Ícones simples com linhas */
+    .icon-line {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    /* Transições suaves */
+    .transition-base {
+      transition: all 200ms ease-out;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="app-wrapper bg-[#122c34] text-white">
+  <header class="w-full sticky top-0 z-30 bg-[#122c34]/95 backdrop-blur border-b border-[#2a4494]">
+   <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+    <div class="flex items-center gap-3"><!-- Símbolo cristão minimalista: cruz em círculo -->
+     <div class="h-10 w-10 rounded-full bg-[#224870] flex items-center justify-center">
+      <svg viewbox="0 0 24 24" class="h-6 w-6 text-[#44cfcb]" aria-hidden="true"><g class="icon-line" stroke="currentColor" stroke-width="1.7" fill="none">
+        <circle cx="12" cy="12" r="9"></circle>
+        <line x1="12" y1="7" x2="12" y2="17"></line>
+        <line x1="8" y1="11.5" x2="16" y2="11.5"></line>
+       </g>
+      </svg>
+     </div>
+     <div>
+      <h1 id="siteTitle" class="text-lg font-semibold tracking-wide text-white">Comunidade Católica Yeshuá</h1>
+      <p class="text-xs text-[#4ea5d9]">Espiritualidade, Comunhão e Missão</p>
+     </div>
+    </div><!-- Menu desktop -->
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium"><a href="#home" class="focus-ring transition-base text-[#44cfcb] hover:text-[#4ea5d9]">Início</a> <a href="#quem-somos" class="focus-ring transition-base hover:text-[#4ea5d9]">Quem Somos</a> <a href="#noticias" class="focus-ring transition-base hover:text-[#4ea5d9]">Notícias</a> <a href="#formacoes" class="focus-ring transition-base hover:text-[#4ea5d9]">Formações</a> <a href="#ministerios" class="focus-ring transition-base hover:text-[#4ea5d9]">Ministérios</a> <a href="#galeria" class="focus-ring transition-base hover:text-[#4ea5d9]">Galeria</a> <a href="#testemunhos" class="focus-ring transition-base hover:text-[#4ea5d9]">Testemunhos</a> <a href="#contato" class="focus-ring transition-base hover:text-[#4ea5d9]">Fale Conosco</a>
+    </div><!-- Ações e redes -->
+    <div class="hidden md:flex items-center gap-3"><a href="#pedidos-oracao" class="focus-ring px-3 py-1.5 rounded-full bg-[#4ea5d9] text-xs font-semibold text-[#122c34] hover:bg-[#44cfcb] transition-base"> Pedidos de Oração </a>
+     <div class="flex items-center gap-2"><!-- Ícones simples de redes (links fictícios) --> <a href="https://www.facebook.com/share/17sCbPUcSA/" aria-label="Facebook" class="focus-ring h-8 w-8 rounded-full bg-[#224870] flex items-center justify-center hover:bg-[#2a4494] transition-base"> <span class="text-xs font-bold">f</span> </a> <a href="https://www.instagram.com/yeshua_scj" aria-label="Instagram" class="focus-ring h-8 w-8 rounded-full bg-[#224870] flex items-center justify-center hover:bg-[#2a4494] transition-base"> <span class="text-xs font-semibold">@</span> </a> <a href="#" aria-label="YouTube" class="focus-ring h-8 w-8 rounded-full bg-[#224870] flex items-center justify-center hover:bg-[#2a4494] transition-base"> <span class="text-[10px] font-bold">▶</span> </a> <a href="https://wa.me/5585987080114" aria-label="WhatsApp" class="focus-ring h-8 w-8 rounded-full bg-[#224870] flex items-center justify-center hover:bg-[#2a4494] transition-base"> <span class="text-xs font-bold">W</span> </a> <a href="#" aria-label="Spotify" class="focus-ring h-8 w-8 rounded-full bg-[#224870] flex items-center justify-center hover:bg-[#2a4494] transition-base"> <span class="text-[10px] font-bold">♫</span> </a>
+     </div>
+    </div><!-- Menu mobile --> <button id="mobileMenuBtn" class="md:hidden focus-ring h-9 w-9 rounded-full bg-[#224870] flex items-center justify-center text-white transition-base" aria-label="Abrir menu"> <span id="mobileMenuIcon" class="text-xl">☰</span> </button>
+   </nav><!-- Dropdown mobile -->
+   <div id="mobileMenu" class="md:hidden max-w-6xl mx-auto px-4 pb-3 hidden">
+    <div class="flex flex-col gap-2 text-sm font-medium"><a href="#home" class="focus-ring py-1.5 text-[#44cfcb]">Início</a> <a href="#quem-somos" class="focus-ring py-1.5">Quem Somos</a> <a href="#noticias" class="focus-ring py-1.5">Notícias</a> <a href="#formacoes" class="focus-ring py-1.5">Formações</a> <a href="#ministerios" class="focus-ring py-1.5">Ministérios</a> <a href="#galeria" class="focus-ring py-1.5">Galeria</a> <a href="#testemunhos" class="focus-ring py-1.5">Testemunhos</a> <a href="#contato" class="focus-ring py-1.5">Fale Conosco</a>
+    </div>
+   </div>
+  </header>
+  <main id="home" class="w-full"><!-- Hero / Banner principal -->
+   <section class="w-full bg-gradient-to-br from-[#122c34] via-[#224870] to-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-14 flex flex-col md:flex-row gap-8 items-center"><!-- Texto -->
+     <div class="md:w-1/2 space-y-5">
+      <h2 id="heroTitle" class="text-2xl md:text-3xl font-semibold text-white leading-snug">Bem-vindo à Comunidade Católica Yeshuá</h2>
+      <p id="heroSubtitle" class="text-sm md:text-base text-[#c4e3ff] max-w-xl">Um espaço de encontro com Cristo vivo, de escuta da Palavra, adoração, missão e cuidado fraterno.</p>
+      <p class="text-xs md:text-sm text-[#c4e3ff]/90">“Vinde a mim todos vós que estais cansados e oprimidos, e eu vos aliviarei.” (Mt 11, 28)</p>
+      <div class="flex flex-wrap gap-3 pt-2"><a href="#eventos" class="focus-ring px-4 py-2 rounded-full bg-[#4ea5d9] text-[#122c34] text-xs md:text-sm font-semibold hover:bg-[#44cfcb] transition-base"> Participar da Missa </a> <a href="#pedidos-oracao" class="focus-ring px-4 py-2 rounded-full border border-[#4ea5d9] text-[#4ea5d9] text-xs md:text-sm font-semibold hover:bg-[#4ea5d9]/10 transition-base"> Pedidos de Oração </a> <a href="#contato" class="focus-ring px-4 py-2 rounded-full border border-[#44cfcb] text-[#44cfcb] text-xs md:text-sm font-semibold hover:bg-[#44cfcb]/10 transition-base"> Fale Conosco </a>
+      </div>
+     </div><!-- Banner visual cristão com shapes (sem imagem externa) -->
+     <div class="md:w-1/2">
+      <div class="relative rounded-3xl bg-[#122c34] border border-[#2a4494] p-5 overflow-hidden shadow-lg"><!-- Luz central -->
+       <div class="absolute inset-0 opacity-40 pointer-events-none">
+        <div class="w-full h-full bg-radial from-[#44cfcb] via-transparent to-transparent" style="background: radial-gradient(circle at 50% 20%, #44cfcb 0, rgba(68,207,203,0.05) 40%, transparent 70%);"></div>
+       </div>
+       <div class="relative space-y-4"><!-- Cruz estilizada -->
+        <div class="flex justify-center pt-1">
+         <svg viewbox="0 0 80 80" class="h-28 w-28 text-[#4ea5d9]" aria-hidden="true"><g class="icon-line" stroke="currentColor" stroke-width="3" fill="none">
+           <circle cx="40" cy="40" r="30" opacity="0.3"></circle>
+           <line x1="40" y1="18" x2="40" y2="62"></line>
+           <line x1="24" y1="34" x2="56" y2="34"></line>
+          </g>
+         </svg>
+        </div>
+        <p class="text-center text-sm text-[#e3f2fd] max-w-xs mx-auto">Comunidade de oração, adoração e evangelização, aberta a famílias, jovens, crianças, idosos e todos que buscam um encontro vivo com Jesus.</p>
+        <div class="grid grid-cols-2 gap-3 text-xs text-[#c4e3ff]">
+         <div class="rounded-2xl bg-[#224870]/60 border border-[#2a4494]/70 p-3 space-y-1">
+          <p class="font-semibold text-[#44cfcb]">Espiritualidade</p>
+          <p>Celebrações, grupos de oração, adoração e retiros para aprofundar a fé.</p>
+         </div>
+         <div class="rounded-2xl bg-[#224870]/60 border border-[#2a4494]/70 p-3 space-y-1">
+          <p class="font-semibold text-[#44cfcb]">Comunidade</p>
+          <p>Partilha, serviço, acompanhamento e cuidado com cada pessoa.</p>
+         </div>
+         <div class="rounded-2xl bg-[#224870]/60 border border-[#2a4494]/70 p-3 space-y-1 col-span-2">
+          <p class="font-semibold text-[#44cfcb]">Missão</p>
+          <p>Evangelizar com alegria, servindo a Igreja e os irmãos, especialmente os mais necessitados.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Destaques Home -->
+    <div class="max-w-6xl mx-auto px-4 pb-10">
+     <div class="grid md:grid-cols-4 gap-4">
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <h3 class="text-sm font-semibold text-[#44cfcb]">Notícias</h3>
+       <p class="text-xs text-[#e3f2fd]">Acompanhe os comunicados, eventos e avisos da comunidade.</p><button data-section-target="#noticias" class="focus-ring inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ver notícias → </button>
+      </article>
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <h3 class="text-sm font-semibold text-[#44cfcb]">Formações</h3>
+       <p class="text-xs text-[#e3f2fd]">Conteúdos para crescer na fé em família, com jovens e na vida de oração.</p><button data-section-target="#formacoes" class="focus-ring inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ver formações → </button>
+      </article>
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <h3 class="text-sm font-semibold text-[#44cfcb]">Eventos</h3>
+       <p class="text-xs text-[#e3f2fd]">Retiros, encontros, missas e atividades pastorais da agenda da comunidade.</p><button data-section-target="#eventos" class="focus-ring inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ver agenda → </button>
+      </article>
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <h3 class="text-sm font-semibold text-[#44cfcb]">Testemunhos</h3>
+       <p class="text-xs text-[#e3f2fd]">Histórias reais de fé, cura, conversão e recomeços em Cristo.</p><button data-section-target="#testemunhos" class="focus-ring inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ler testemunhos → </button>
+      </article>
+     </div>
+    </div>
+   </section><!-- Quem Somos -->
+   <section id="quem-somos" class="w-full bg-[#122c34]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <div class="grid md:grid-cols-2 gap-8 items-start">
+      <div class="space-y-4">
+       <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb]">Quem Somos</h2>
+       <p class="text-sm text-[#e3f2fd]">A Comunidade Católica Yeshuá nasceu do desejo de viver uma experiência profunda com Jesus, criando um ambiente de oração, formação e missão em comunhão com a Igreja.</p>
+       <p class="text-sm text-[#e3f2fd]/90">Ao longo dos anos, o Senhor reuniu famílias, jovens e consagrados que desejam entregar suas vidas ao anúncio do Evangelho, à adoração e ao serviço aos irmãos.</p>
+       <div class="grid md:grid-cols-2 gap-4 pt-2">
+        <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+         <h3 class="text-sm font-semibold text-[#44cfcb]">Carisma</h3>
+         <p class="text-xs text-[#e3f2fd]">Viver a intimidade com Jesus, Palavra encarnada, e levar muitos a essa mesma experiência de amor.</p>
+        </div>
+        <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+         <h3 class="text-sm font-semibold text-[#44cfcb]">Missão</h3>
+         <p class="text-xs text-[#e3f2fd]">Evangelizar com alegria, por meio de encontros, formações, missões e serviço à comunidade.</p>
+        </div>
+        <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+         <h3 class="text-sm font-semibold text-[#44cfcb]">Visão</h3>
+         <p class="text-xs text-[#e3f2fd]">Ser um espaço de cura, reconciliação, santidade e envio missionário para a Igreja.</p>
+        </div>
+        <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+         <h3 class="text-sm font-semibold text-[#44cfcb]">Valores</h3>
+         <p class="text-xs text-[#e3f2fd]">Oração, comunhão, serviço, obediência à Igreja, simplicidade, amor aos pobres e misericórdia.</p>
+        </div>
+       </div>
+      </div><!-- “Fotos” estilizadas (sem imagens externas) -->
+      <div class="space-y-4">
+       <div class="rounded-3xl bg-[#224870] border border-[#2a4494] p-4">
+        <p class="text-xs uppercase tracking-wide text-[#c4e3ff] mb-2">Comunidade em missão</p>
+        <div class="h-40 rounded-2xl bg-gradient-to-tr from-[#44cfcb] via-[#4ea5d9] to-[#2a4494] flex items-center justify-center text-sm text-[#122c34] font-semibold">
+         Espaço para foto da comunidade
+        </div>
+       </div>
+       <div class="grid grid-cols-2 gap-3">
+        <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-3">
+         <div class="h-20 rounded-xl bg-gradient-to-tr from-[#4ea5d9] to-[#44cfcb] flex items-center justify-center text-[10px] text-[#122c34] font-semibold">
+          Equipe pastoral
+         </div>
+        </div>
+        <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-3">
+         <div class="h-20 rounded-xl bg-gradient-to-tr from-[#2a4494] to-[#4ea5d9] flex items-center justify-center text-[10px] text-[#e3f2fd] font-semibold">
+          Momentos de oração
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Notícias -->
+   <section id="noticias" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-5">
+      <div>
+       <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb]">Notícias</h2>
+       <p class="text-sm text-[#e3f2fd]">Atualizações sobre eventos, encontros, pastorais e comunicados da comunidade.</p>
+      </div>
+      <form id="newsForm" class="w-full md:w-auto md:min-w-[320px] bg-[#224870] border border-[#2a4494] rounded-2xl p-4 space-y-3">
+       <h3 class="text-sm font-semibold text-[#4ea5d9]">Adicionar notícia (demo)</h3>
+       <div class="flex flex-col gap-2"><label for="newsTitle" class="text-xs text-[#e3f2fd]">Título</label> <input id="newsTitle" name="newsTitle" type="text" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]">
+       </div>
+       <div class="flex flex-col gap-2"><label for="newsContent" class="text-xs text-[#e3f2fd]">Resumo</label> <textarea id="newsContent" name="newsContent" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]" rows="2"></textarea>
+       </div>
+       <div class="flex flex-col gap-2"><label for="newsCategory" class="text-xs text-[#e3f2fd]">Categoria</label> <input id="newsCategory" name="newsCategory" type="text" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]" placeholder="Eventos, Avisos...">
+       </div><button id="newsSubmit" type="submit" class="w-full focus-ring rounded-full px-3 py-2 text-xs font-semibold bg-[#4ea5d9] text-[#122c34] hover:bg-[#44cfcb] transition-base"> Salvar notícia </button>
+       <p id="newsFeedback" class="text-[11px] text-[#44cfcb] hidden"></p>
+      </form>
+     </div>
+     <div id="newsList" class="grid md:grid-cols-3 gap-4"><!-- Itens de notícias gerenciados via Data SDK -->
+     </div>
+    </div>
+   </section><!-- Formações -->
+   <section id="formacoes" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+      <div>
+       <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb]">Formações</h2>
+       <p class="text-sm text-[#e3f2fd]">Conteúdos para fortalecer sua caminhada cristã nas diversas dimensões da vida.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 text-xs"><button data-filter="todas" class="focus-ring px-3 py-1.5 rounded-full bg-[#4ea5d9] text-[#122c34] font-semibold transition-base"> Todas </button> <button data-filter="Família" class="focus-ring px-3 py-1.5 rounded-full bg-[#224870] text-[#e3f2fd] hover:bg-[#2a4494] transition-base"> Família </button> <button data-filter="Jovens" class="focus-ring px-3 py-1.5 rounded-full bg-[#224870] text-[#e3f2fd] hover:bg-[#2a4494] transition-base"> Jovens </button> <button data-filter="Liturgia" class="focus-ring px-3 py-1.5 rounded-full bg-[#224870] text-[#e3f2fd] hover:bg-[#2a4494] transition-base"> Liturgia </button> <button data-filter="Bíblia" class="focus-ring px-3 py-1.5 rounded-full bg-[#224870] text-[#e3f2fd] hover:bg-[#2a4494] transition-base"> Bíblia </button> <button data-filter="Espiritualidade" class="focus-ring px-3 py-1.5 rounded-full bg-[#224870] text-[#e3f2fd] hover:bg-[#2a4494] transition-base"> Espiritualidade </button>
+      </div>
+     </div>
+     <div class="grid md:grid-cols-3 gap-4"><!-- Cards exemplo estáticos -->
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <p class="text-[11px] uppercase tracking-wide text-[#4ea5d9]">Família</p>
+       <h3 class="text-sm font-semibold text-[#44cfcb]">Oração em família: um altar em casa</h3>
+       <p class="text-xs text-[#e3f2fd]">Sugestões de como criar um pequeno espaço de oração e momentos simples de partilha em família.</p><button class="focus-ring mt-1 inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ler conteúdo → </button>
+      </article>
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <p class="text-[11px] uppercase tracking-wide text-[#4ea5d9]">Jovens</p>
+       <h3 class="text-sm font-semibold text-[#44cfcb]">Ser jovem e santo no mundo de hoje</h3>
+       <p class="text-xs text-[#e3f2fd]">Um convite à santidade concreta no cotidiano, estudando, trabalhando e servindo.</p><button class="focus-ring mt-1 inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ler conteúdo → </button>
+      </article>
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <p class="text-[11px] uppercase tracking-wide text-[#4ea5d9]">Bíblia</p>
+       <h3 class="text-sm font-semibold text-[#44cfcb]">Como rezar com a Palavra de Deus</h3>
+       <p class="text-xs text-[#e3f2fd]">Passos simples de Lectio Divina para o dia a dia, ajudando a escutar o que Deus fala.</p><button class="focus-ring mt-1 inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ler conteúdo → </button>
+      </article>
+     </div>
+    </div>
+   </section><!-- Ministérios -->
+   <section id="ministerios" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+      <div class="md:w-1/2 space-y-4">
+       <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb]">Ministérios</h2>
+       <p class="text-sm text-[#e3f2fd]">Cada dom é um presente para a Igreja. Conheça os ministérios da comunidade e encontre seu lugar de serviço.</p>
+       <ul class="space-y-2 text-xs text-[#e3f2fd]">
+        <li><span class="font-semibold text-[#44cfcb]">Música:</span> serviço na liturgia e nos grupos de oração.</li>
+        <li><span class="font-semibold text-[#44cfcb]">Intercessão:</span> oração constante pelas intenções da comunidade.</li>
+        <li><span class="font-semibold text-[#44cfcb]">Acolhida:</span> receber cada pessoa com amor e escuta.</li>
+        <li><span class="font-semibold text-[#44cfcb]">Pregação:</span> anúncio da Palavra com fidelidade e unção.</li>
+        <li><span class="font-semibold text-[#44cfcb]">Serviço:</span> cuidado com a estrutura, limpeza, organização.</li>
+       </ul>
+      </div>
+      <div class="md:w-1/2">
+       <form id="ministryForm" class="bg-[#224870] border border-[#2a4494] rounded-2xl p-5 space-y-3">
+        <h3 class="text-sm font-semibold text-[#4ea5d9]">Quero participar de um ministério</h3>
+        <p class="text-xs text-[#e3f2fd]">Preencha seus dados e escolha o ministério que sente no coração. Entraremos em contato.</p>
+        <div class="flex flex-col gap-2"><label for="ministryName" class="text-xs text-[#e3f2fd]">Nome completo</label> <input id="ministryName" name="ministryName" type="text" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]">
+        </div>
+        <div class="flex flex-col gap-2"><label for="ministryContact" class="text-xs text-[#e3f2fd]">Telefone ou e-mail</label> <input id="ministryContact" name="ministryContact" type="text" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]">
+        </div>
+        <div class="flex flex-col gap-2"><label for="ministrySelect" class="text-xs text-[#e3f2fd]">Ministério de interesse</label> <select id="ministrySelect" name="ministrySelect" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]"> <option>Música</option> <option>Intercessão</option> <option>Acolhida</option> <option>Pregação</option> <option>Serviço</option> </select>
+        </div><button type="submit" id="ministrySubmit" class="w-full focus-ring rounded-full px-3 py-2 text-xs font-semibold bg-[#4ea5d9] text-[#122c34] hover:bg-[#44cfcb] transition-base"> Enviar interesse </button>
+        <p id="ministryFeedback" class="text-[11px] text-[#44cfcb] hidden"></p>
+       </form>
+      </div>
+     </div>
+    </div>
+   </section><!-- Galeria -->
+   <section id="galeria" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb] mb-4">Galeria</h2>
+     <p class="text-sm text-[#e3f2fd] mb-6">Momentos especiais da comunidade: missas, retiros, encontros e experiências de fé.</p>
+     <div class="grid md:grid-cols-3 gap-4"><!-- “Fotos” em cartões para futura substituição por imagens reais -->
+      <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-3 space-y-2">
+       <div class="h-32 rounded-xl bg-gradient-to-br from-[#44cfcb] via-[#4ea5d9] to-[#2a4494] flex items-center justify-center text-[11px] text-[#122c34] font-semibold">
+        Missa dominical
+       </div>
+       <p class="text-xs text-[#e3f2fd]">Celebração dominical com a comunidade reunida em oração.</p>
+      </div>
+      <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-3 space-y-2">
+       <div class="h-32 rounded-xl bg-gradient-to-br from-[#2a4494] via-[#4ea5d9] to-[#44cfcb] flex items-center justify-center text-[11px] text-[#e3f2fd] font-semibold">
+        Retiro espiritual
+       </div>
+       <p class="text-xs text-[#e3f2fd]">Tempo de silêncio, escuta da Palavra e cura interior.</p>
+      </div>
+      <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-3 space-y-2">
+       <div class="h-32 rounded-xl bg-gradient-to-br from-[#4ea5d9] via-[#44cfcb] to-[#2a4494] flex items-center justify-center text-[11px] text-[#122c34] font-semibold">
+        Grupo de jovens
+       </div>
+       <p class="text-xs text-[#e3f2fd]">Juventude reunida para louvar, escutar e partilhar a vida.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testemunhos -->
+   <section id="testemunhos" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+      <div class="md:w-1/2 space-y-4">
+       <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb]">Testemunhos</h2>
+       <p class="text-sm text-[#e3f2fd]">Deus continua agindo na vida do seu povo. Leia alguns testemunhos de fé e partilhe também a sua experiência.</p>
+       <div id="testimonyList" class="space-y-3">
+        <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-1">
+         <p class="text-xs text-[#c4e3ff]">“Encontrei na comunidade um lugar de cura, escuta e reencontro com o amor de Deus.”</p>
+         <p class="text-[11px] text-[#44cfcb] font-semibold">– Membro da comunidade</p>
+        </article>
+       </div>
+      </div>
+      <div class="md:w-1/2">
+       <form id="testimonyForm" class="bg-[#224870] border border-[#2a4494] rounded-2xl p-5 space-y-3">
+        <h3 class="text-sm font-semibold text-[#4ea5d9]">Envie seu testemunho</h3>
+        <p class="text-xs text-[#e3f2fd]">Conte brevemente o que Deus realizou em sua vida por meio da comunidade.</p>
+        <div class="flex flex-col gap-2"><label for="testimonyName" class="text-xs text-[#e3f2fd]">Seu nome (opcional)</label> <input id="testimonyName" name="testimonyName" type="text" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]">
+        </div>
+        <div class="flex flex-col gap-2"><label for="testimonyContent" class="text-xs text-[#e3f2fd]">Testemunho</label> <textarea id="testimonyContent" name="testimonyContent" rows="3" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]"></textarea>
+        </div><button type="submit" id="testimonySubmit" class="w-full focus-ring rounded-full px-3 py-2 text-xs font-semibold bg-[#4ea5d9] text-[#122c34] hover:bg-[#44cfcb] transition-base"> Enviar testemunho </button>
+        <p id="testimonyFeedback" class="text-[11px] text-[#44cfcb] hidden"></p>
+       </form>
+      </div>
+     </div>
+    </div>
+   </section><!-- Eventos / Agenda -->
+   <section id="eventos" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+      <div class="md:w-1/2 space-y-4">
+       <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb]">Eventos</h2>
+       <p class="text-sm text-[#e3f2fd]">Acompanhe a agenda completa da comunidade: missas, grupos de oração, retiros e atividades especiais.</p>
+       <ul class="space-y-2 text-xs text-[#e3f2fd]">
+        <li><span class="text-[#44cfcb] font-semibold">Missa dominical:</span> todos os domingos, 19h30.</li>
+        <li><span class="text-[#44cfcb] font-semibold">Grupo de oração:</span> quartas-feiras, 20h.</li>
+        <li><span class="text-[#44cfcb] font-semibold">Adoração ao Santíssimo:</span> primeira sexta-feira do mês, 21h às 22h.</li>
+       </ul>
+      </div>
+      <div class="md:w-1/2"><!-- Área administrável simples para eventos (form demo) -->
+       <form id="eventForm" class="bg-[#224870] border border-[#2a4494] rounded-2xl p-5 space-y-3">
+        <h3 class="text-sm font-semibold text-[#4ea5d9]">Cadastrar evento (demo)</h3>
+        <div class="flex flex-col gap-2"><label for="eventTitle" class="text-xs text-[#e3f2fd]">Título do evento</label> <input id="eventTitle" name="eventTitle" type="text" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]">
+        </div>
+        <div class="flex flex-col gap-2"><label for="eventDate" class="text-xs text-[#e3f2fd]">Data</label> <input id="eventDate" name="eventDate" type="date" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]">
+        </div>
+        <div class="flex flex-col gap-2"><label for="eventDesc" class="text-xs text-[#e3f2fd]">Descrição</label> <textarea id="eventDesc" name="eventDesc" rows="2" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]"></textarea>
+        </div><button type="submit" id="eventSubmit" class="w-full focus-ring rounded-full px-3 py-2 text-xs font-semibold bg-[#4ea5d9] text-[#122c34] hover:bg-[#44cfcb] transition-base"> Salvar evento </button>
+        <p id="eventFeedback" class="text-[11px] text-[#44cfcb] hidden"></p>
+       </form>
+      </div>
+     </div>
+    </div>
+   </section><!-- Pedidos de Oração -->
+   <section id="pedidos-oracao" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <div class="grid md:grid-cols-2 gap-6 items-start">
+      <div class="space-y-4">
+       <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb]">Pedidos de Oração</h2>
+       <p class="text-sm text-[#e3f2fd]">Seus pedidos são acolhidos com carinho por nossos intercessores e apresentados diante do Senhor em nossas orações.</p>
+      </div>
+      <form id="prayerForm" class="bg-[#224870] border border-[#2a4494] rounded-2xl p-5 space-y-3">
+       <div class="flex flex-col gap-2"><label for="prayerName" class="text-xs text-[#e3f2fd]">Nome (opcional)</label> <input id="prayerName" name="prayerName" type="text" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]">
+       </div>
+       <div class="flex flex-col gap-2"><label for="prayerIntention" class="text-xs text-[#e3f2fd]">Intenção de oração</label> <textarea id="prayerIntention" name="prayerIntention" rows="3" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]"></textarea>
+       </div><button type="submit" id="prayerSubmit" class="w-full focus-ring rounded-full px-3 py-2 text-xs font-semibold bg-[#4ea5d9] text-[#122c34] hover:bg-[#44cfcb] transition-base"> Enviar pedido </button>
+       <p id="prayerFeedback" class="text-[11px] text-[#44cfcb] hidden"></p>
+      </form>
+     </div>
+    </div>
+   </section><!-- Blog Espiritual -->
+   <section id="blog" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb] mb-4">Blog Espiritual</h2>
+     <p class="text-sm text-[#e3f2fd] mb-6">Reflexões, meditações e conteúdos que ajudam a rezar e caminhar com o Senhor no cotidiano.</p>
+     <div class="grid md:grid-cols-3 gap-4">
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <p class="text-[11px] uppercase tracking-wide text-[#4ea5d9]">Reflexão</p>
+       <h3 class="text-sm font-semibold text-[#44cfcb]">A arte de silenciar o coração</h3>
+       <p class="text-xs text-[#e3f2fd]">Um convite a redescobrir o silêncio interior como lugar de encontro com Deus.</p><button class="focus-ring mt-1 inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ler mais → </button>
+      </article>
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <p class="text-[11px] uppercase tracking-wide text-[#4ea5d9]">Vida de oração</p>
+       <h3 class="text-sm font-semibold text-[#44cfcb]">Pequenas fidelidades de cada dia</h3>
+       <p class="text-xs text-[#e3f2fd]">Como pequenos atos de amor transformam a nossa relação com Deus e com os irmãos.</p><button class="focus-ring mt-1 inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ler mais → </button>
+      </article>
+      <article class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+       <p class="text-[11px] uppercase tracking-wide text-[#4ea5d9]">Igreja</p>
+       <h3 class="text-sm font-semibold text-[#44cfcb]">Caminhar em comunidade</h3>
+       <p class="text-xs text-[#e3f2fd]">A beleza de viver a fé junto com outros irmãos que também buscam a Deus.</p><button class="focus-ring mt-1 inline-flex text-xs font-semibold text-[#4ea5d9] hover:text-[#44cfcb] transition-base"> Ler mais → </button>
+      </article>
+     </div>
+    </div>
+   </section><!-- Doações -->
+   <section id="doacoes" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <div class="grid md:grid-cols-2 gap-6 items-start">
+      <div class="space-y-4">
+       <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb]">Doações</h2>
+       <p class="text-sm text-[#e3f2fd]">Sua contribuição ajuda a manter a missão da comunidade, apoiar projetos sociais, formações, liturgia e a evangelização. Esta é uma área demonstrativa; a integração de pagamento real precisa ser feita fora deste protótipo.</p>
+       <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2">
+        <p class="text-xs text-[#e3f2fd]"><span class="font-semibold text-[#44cfcb]">Conta bancária (exemplo):</span><br>
+          Banco: 000 • Agência: 0000 • Conta: 00000-0<br>
+          Comunidade Católica Yeshuá</p>
+       </div>
+      </div>
+      <div class="space-y-3">
+       <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-3">
+        <h3 class="text-sm font-semibold text-[#4ea5d9]">Pix (QR Code demonstrativo)</h3>
+        <div class="rounded-xl bg-[#122c34] border border-dashed border-[#44cfcb] p-4 flex flex-col items-center justify-center gap-2">
+         <div class="w-28 h-28 rounded bg-[#44cfcb] flex items-center justify-center text-[10px] text-[#122c34] font-semibold">
+          QR Code Pix<br>
+          Exemplo
+         </div>
+         <p class="text-[11px] text-[#e3f2fd] text-center">Aqui você pode inserir o QR Code Pix oficial da comunidade quando for publicar o site.</p>
+        </div><button class="focus-ring w-full rounded-full px-3 py-2 text-xs font-semibold bg-[#4ea5d9] text-[#122c34] hover:bg-[#44cfcb] transition-base"> Como apoiar a missão </button>
+       </div>
+       <p class="text-[11px] text-[#c4e3ff]">Este bloco de doações é um <span class="font-semibold">protótipo visual</span>. Processos reais de pagamento devem ser configurados com segurança em plataformas próprias.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Fale Conosco -->
+   <section id="contato" class="w-full bg-[#122c34] border-t border-[#2a4494]">
+    <div class="max-w-6xl mx-auto px-4 py-10 md:py-12">
+     <div class="grid md:grid-cols-2 gap-6 items-start">
+      <div class="space-y-4">
+       <h2 class="text-xl md:text-2xl font-semibold text-[#44cfcb]">Fale Conosco</h2>
+       <p class="text-sm text-[#e3f2fd]">Entre em contato para informações sobre missas, grupos de oração, formações ou para falar com a equipe pastoral.</p>
+       <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2 text-xs text-[#e3f2fd]">
+        <p><span class="font-semibold text-[#44cfcb]">Endereço:</span> Rua Exemplo, 123 – Bairro – Cidade/UF</p>
+        <p><span class="font-semibold text-[#44cfcb]">Horários de missa:</span> Domingo 19h30</p>
+        <p><span class="font-semibold text-[#44cfcb]">Horário de atendimento:</span> Terça a sexta, 14h às 18h</p>
+       </div>
+       <div class="rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2 text-xs text-[#e3f2fd]">
+        <p class="font-semibold text-[#4ea5d9]">Localização (mapa demonstrativo)</p>
+        <div class="h-32 rounded-xl bg-gradient-to-br from-[#4ea5d9] via-[#44cfcb] to-[#2a4494] flex items-center justify-center text-[11px] text-[#122c34] font-semibold">
+         Espaço para mapa incorporado
+        </div>
+       </div>
+       <div class="flex flex-wrap gap-3 text-xs"><a href="https://wa.me/5585987080114" class="focus-ring inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#44cfcb] text-[#122c34] font-semibold hover:bg-[#4ea5d9] transition-base"> WhatsApp </a> <a href="mailto:contato@yeshua.com" class="focus-ring inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-[#4ea5d9] text-[#4ea5d9] font-semibold hover:bg-[#4ea5d9]/10 transition-base"> E-mail </a>
+       </div>
+      </div>
+      <div>
+       <form id="contactForm" class="bg-[#224870] border border-[#2a4494] rounded-2xl p-5 space-y-3">
+        <h3 class="text-sm font-semibold text-[#4ea5d9]">Envie sua mensagem</h3>
+        <div class="flex flex-col gap-2"><label for="contactName" class="text-xs text-[#e3f2fd]">Nome</label> <input id="contactName" name="contactName" type="text" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]">
+        </div>
+        <div class="flex flex-col gap-2"><label for="contactEmail" class="text-xs text-[#e3f2fd]">E-mail</label> <input id="contactEmail" name="contactEmail" type="email" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]">
+        </div>
+        <div class="flex flex-col gap-2"><label for="contactMessage" class="text-xs text-[#e3f2fd]">Mensagem</label> <textarea id="contactMessage" name="contactMessage" rows="3" class="focus-ring rounded-lg px-3 py-2 text-xs text-[#122c34]"></textarea>
+        </div><button type="submit" id="contactSubmit" class="w-full focus-ring rounded-full px-3 py-2 text-xs font-semibold bg-[#4ea5d9] text-[#122c34] hover:bg-[#44cfcb] transition-base"> Enviar mensagem </button>
+        <p id="contactFeedback" class="text-[11px] text-[#44cfcb] hidden"></p>
+       </form>
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="w-full bg-[#122c34] border-t border-[#2a4494]">
+   <div class="max-w-6xl mx-auto px-4 py-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+     <div class="space-y-1 text-xs text-[#c4e3ff]">
+      <p id="footerText">© 2024 Comunidade Católica Yeshuá – Todos os direitos reservados.</p>
+      <p>“Tudo posso naquele que me fortalece.” (Fl 4, 13)</p>
+     </div>
+     <div class="flex flex-col items-start md:items-end gap-2 text-xs text-[#c4e3ff]">
+      <p class="font-semibold text-[#4ea5d9]">Redes sociais</p>
+      <div class="flex flex-wrap gap-2"><a href="https://www.facebook.com/share/17sCbPUcSA/" class="focus-ring px-2 py-1 rounded-full bg-[#224870] hover:bg-[#2a4494] transition-base">Facebook</a> <a href="https://www.instagram.com/yeshua_scj" class="focus-ring px-2 py-1 rounded-full bg-[#224870] hover:bg-[#2a4494] transition-base">Instagram</a> <a href="#" class="focus-ring px-2 py-1 rounded-full bg-[#224870] hover:bg-[#2a4494] transition-base">YouTube</a> <a href="https://wa.me/5585987080114" class="focus-ring px-2 py-1 rounded-full bg-[#224870] hover:bg-[#2a4494] transition-base">WhatsApp</a> <a href="#" class="focus-ring px-2 py-1 rounded-full bg-[#224870] hover:bg-[#2a4494] transition-base">Spotify</a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <script>
+    // ---------- CONFIG E EDITABILIDADE ----------
+    const defaultConfig = {
+      site_title: "Comunidade Católica Yeshuá",
+      hero_title: "Bem-vindo à Comunidade Católica Yeshuá",
+      hero_subtitle: "Espiritualidade, Comunhão e Missão",
+      mission_block_title: "Nossa Missão",
+      footer_text: "© 2024 Comunidade Católica Yeshuá – Todos os direitos reservados.",
+      background_color: "#122c34",
+      surface_color: "#224870",
+      text_color: "#ffffff",
+      primary_action_color: "#4ea5d9",
+      secondary_action_color: "#44cfcb",
+      font_family: "System",
+      font_size: 14
+    };
+
+    function applyConfigToUI(config) {
+      const cfg = config || defaultConfig;
+      const siteTitleEl = document.getElementById("siteTitle");
+      const heroTitleEl = document.getElementById("heroTitle");
+      const heroSubtitleEl = document.getElementById("heroSubtitle");
+      const footerTextEl = document.getElementById("footerText");
+
+      if (siteTitleEl) siteTitleEl.textContent = cfg.site_title || defaultConfig.site_title;
+      if (heroTitleEl) heroTitleEl.textContent = cfg.hero_title || defaultConfig.hero_title;
+      if (heroSubtitleEl) heroSubtitleEl.textContent = cfg.hero_subtitle || defaultConfig.hero_subtitle;
+      if (footerTextEl) footerTextEl.textContent = cfg.footer_text || defaultConfig.footer_text;
+
+      const baseFont = cfg.font_family || defaultConfig.font_family;
+      const baseStack = "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+      const fullFont = baseFont + ", " + baseStack;
+      const baseSize = cfg.font_size || defaultConfig.font_size;
+
+      document.body.style.backgroundColor = cfg.background_color || defaultConfig.background_color;
+      document.body.style.fontFamily = fullFont;
+      document.body.style.color = cfg.text_color || defaultConfig.text_color;
+      document.body.style.fontSize = baseSize + "px";
+
+      // Escalas simples
+      if (heroTitleEl) heroTitleEl.style.fontSize = (baseSize * 2) + "px";
+      if (heroSubtitleEl) heroSubtitleEl.style.fontSize = (baseSize * 1.1) + "px";
+      if (siteTitleEl) siteTitleEl.style.fontSize = (baseSize * 1.3) + "px";
+      if (footerTextEl) footerTextEl.style.fontSize = (baseSize * 0.9) + "px";
+
+      // Aplicar cores nos principais blocos (background / surface / ações)
+      document.querySelectorAll("section").forEach(sec => {
+        sec.style.backgroundColor = cfg.background_color || defaultConfig.background_color;
+      });
+
+      // Cards e superfícies
+      document.querySelectorAll(".bg-[#224870]").forEach(el => {
+        el.style.backgroundColor = cfg.surface_color || defaultConfig.surface_color;
+      });
+
+      // Botões primários
+      document.querySelectorAll("button, a").forEach(el => {
+        if (el.className.includes("bg-[#4ea5d9]")) {
+          el.style.backgroundColor = cfg.primary_action_color || defaultConfig.primary_action_color;
+          el.style.color = "#122c34";
+        }
+      });
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          applyConfigToUI(config);
+        },
+        mapToCapabilities: (config) => {
+          const cfg = config || defaultConfig;
+          return {
+            recolorables: [
+              {
+                get: () => cfg.background_color || defaultConfig.background_color,
+                set: (value) => {
+                  cfg.background_color = value;
+                  window.elementSdk.setConfig({ background_color: value });
+                }
+              },
+              {
+                get: () => cfg.surface_color || defaultConfig.surface_color,
+                set: (value) => {
+                  cfg.surface_color = value;
+                  window.elementSdk.setConfig({ surface_color: value });
+                }
+              },
+              {
+                get: () => cfg.text_color || defaultConfig.text_color,
+                set: (value) => {
+                  cfg.text_color = value;
+                  window.elementSdk.setConfig({ text_color: value });
+                }
+              },
+              {
+                get: () => cfg.primary_action_color || defaultConfig.primary_action_color,
+                set: (value) => {
+                  cfg.primary_action_color = value;
+                  window.elementSdk.setConfig({ primary_action_color: value });
+                }
+              },
+              {
+                get: () => cfg.secondary_action_color || defaultConfig.secondary_action_color,
+                set: (value) => {
+                  cfg.secondary_action_color = value;
+                  window.elementSdk.setConfig({ secondary_action_color: value });
+                }
+              }
+            ],
+            borderables: [],
+            fontEditable: {
+              get: () => cfg.font_family || defaultConfig.font_family,
+              set: (value) => {
+                cfg.font_family = value;
+                window.elementSdk.setConfig({ font_family: value });
+              }
+            },
+            fontSizeable: {
+              get: () => cfg.font_size || defaultConfig.font_size,
+              set: (value) => {
+                cfg.font_size = value;
+                window.elementSdk.setConfig({ font_size: value });
+              }
+            }
+          };
+        },
+        mapToEditPanelValues: (config) => {
+          const cfg = config || defaultConfig;
+          return new Map([
+            ["site_title", cfg.site_title || defaultConfig.site_title],
+            ["hero_title", cfg.hero_title || defaultConfig.hero_title],
+            ["hero_subtitle", cfg.hero_subtitle || defaultConfig.hero_subtitle],
+            ["mission_block_title", cfg.mission_block_title || defaultConfig.mission_block_title],
+            ["footer_text", cfg.footer_text || defaultConfig.footer_text]
+          ]);
+        }
+      });
+      applyConfigToUI(window.elementSdk.config || defaultConfig);
+    } else {
+      applyConfigToUI(defaultConfig);
+    }
+
+    // ---------- MENU MOBILE ----------
+    const mobileBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileIcon = document.getElementById("mobileMenuIcon");
+
+    if (mobileBtn && mobileMenu && mobileIcon) {
+      mobileBtn.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.contains("hidden");
+        if (isHidden) {
+          mobileMenu.classList.remove("hidden");
+          mobileIcon.textContent = "✕";
+        } else {
+          mobileMenu.classList.add("hidden");
+          mobileIcon.textContent = "☰";
+        }
+      });
+
+      mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          mobileIcon.textContent = "☰";
+        });
+      });
+    }
+
+    // ---------- BOTÕES "VER SEÇÃO" ----------
+    document.querySelectorAll("[data-section-target]").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = btn.getAttribute("data-section-target");
+        if (!target) return;
+        const el = document.querySelector(target);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    // ---------- DATA SDK (Notícias simples) ----------
+    let currentRecords = [];
+    let newsLoading = false;
+
+    function renderNewsList(data) {
+      const container = document.getElementById("newsList");
+      if (!container) return;
+      const existing = new Map(
+        Array.from(container.children).map(child => [child.getAttribute("data-id"), child])
+      );
+
+      data.forEach(item => {
+        const id = item.__backendId;
+        const dateStr = item.date || "";
+        const title = item.title || "Sem título";
+        const content = item.content || "";
+        const category = item.category || "";
+
+        let card = existing.get(id);
+        if (card) {
+          existing.delete(id);
+        } else {
+          card = document.createElement("article");
+          card.className = "rounded-2xl bg-[#224870] border border-[#2a4494] p-4 space-y-2";
+          card.setAttribute("data-id", id);
+          container.appendChild(card);
+        }
+        card.innerHTML = "";
+
+        const catP = document.createElement("p");
+        catP.className = "text-[11px] uppercase tracking-wide text-[#4ea5d9]";
+        catP.textContent = category || "Notícia";
+
+        const titleH = document.createElement("h3");
+        titleH.className = "text-sm font-semibold text-[#44cfcb]";
+        titleH.textContent = title;
+
+        const dateP = document.createElement("p");
+        dateP.className = "text-[11px] text-[#c4e3ff]";
+        if (dateStr) {
+          dateP.textContent = new Date(dateStr).toLocaleDateString("pt-BR");
+        }
+
+        const contentP = document.createElement("p");
+        contentP.className = "text-xs text-[#e3f2fd]";
+        contentP.textContent = content;
+
+        card.appendChild(catP);
+        card.appendChild(titleH);
+        card.appendChild(dateP);
+        card.appendChild(contentP);
+      });
+
+      existing.forEach(el => el.remove());
+    }
+
+    if (window.dataSdk) {
+      const handler = {
+        onDataChanged(data) {
+          currentRecords = data || [];
+          renderNewsList(currentRecords.filter(r => r.type === "news"));
+        }
+      };
+
+      window.dataSdk.init(handler).then(result => {
+        if (!result.isOk) {
+          const fb = document.getElementById("newsFeedback");
+          if (fb) {
+            fb.textContent = "Não foi possível carregar as notícias no momento.";
+            fb.classList.remove("hidden");
+          }
+        }
+      });
+    }
+
+    const newsForm = document.getElementById("newsForm");
+    const newsSubmit = document.getElementById("newsSubmit");
+    const newsFeedback = document.getElementById("newsFeedback");
+
+    if (newsForm && newsSubmit && newsFeedback && window.dataSdk) {
+      newsForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (newsLoading) return;
+        if (currentRecords.length >= 999) {
+          newsFeedback.textContent = "Limite máximo de 999 registros atingido. Apague alguns antes de continuar.";
+          newsFeedback.classList.remove("hidden");
+          return;
+        }
+        const title = document.getElementById("newsTitle").value.trim();
+        const content = document.getElementById("newsContent").value.trim();
+        const category = document.getElementById("newsCategory").value.trim() || "Notícia";
+        if (!title || !content) {
+          newsFeedback.textContent = "Preencha pelo menos título e resumo.";
+          newsFeedback.classList.remove("hidden");
+          return;
+        }
+
+        newsLoading = true;
+        newsSubmit.disabled = true;
+        newsSubmit.textContent = "Salvando...";
+        newsFeedback.classList.add("hidden");
+
+        const record = {
+          type: "news",
+          title,
+          content,
+          category,
+          date: new Date().toISOString()
+        };
+
+        const result = await window.dataSdk.create(record);
+        newsLoading = false;
+        newsSubmit.disabled = false;
+        newsSubmit.textContent = "Salvar notícia";
+
+        if (result.isOk) {
+          newsForm.reset();
+          newsFeedback.textContent = "Notícia adicionada com sucesso (demo).";
+          newsFeedback.classList.remove("hidden");
+        } else {
+          newsFeedback.textContent = "Ocorreu um erro ao salvar. Tente novamente.";
+          newsFeedback.classList.remove("hidden");
+        }
+      });
+    }
+
+    // ---------- FORMULÁRIOS SIMPLES COM FEEDBACK INLINE ----------
+    function simpleFormHandler(formId, submitId, feedbackId, successMsg) {
+      const form = document.getElementById(formId);
+      const submitBtn = document.getElementById(submitId);
+      const feedback = document.getElementById(feedbackId);
+      if (!form || !submitBtn || !feedback) return;
+
+      let loading = false;
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (loading) return;
+        loading = true;
+        submitBtn.disabled = true;
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = "Enviando...";
+        feedback.classList.add("hidden");
+
+        setTimeout(() => {
+          loading = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          feedback.textContent = successMsg;
+          feedback.classList.remove("hidden");
+          form.reset();
+        }, 700);
+      });
+    }
+
+    simpleFormHandler("ministryForm", "ministrySubmit", "ministryFeedback", "Interesse enviado. Em breve entraremos em contato (demonstração).");
+    simpleFormHandler("testimonyForm", "testimonySubmit", "testimonyFeedback", "Obrigado por partilhar seu testemunho (demonstração).");
+    simpleFormHandler("eventForm", "eventSubmit", "eventFeedback", "Evento salvo na agenda (demonstração).");
+    simpleFormHandler("prayerForm", "prayerSubmit", "prayerFeedback", "Seu pedido de oração foi recebido (demonstração).");
+    simpleFormHandler("contactForm", "contactSubmit", "contactFeedback", "Mensagem enviada (protótipo). Em produção, será direcionada ao e-mail da comunidade.");
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a52df7ce64d4f83',t:'MTc2NDI1OTU4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
